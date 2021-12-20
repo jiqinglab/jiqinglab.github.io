@@ -1,0 +1,11 @@
+_site/
+
+*.docx
+
+venv/
+__pycache__/
+*.pyc
+.idea/
+
+/lover/
+
