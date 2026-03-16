@@ -4,14 +4,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
   <meta name="author" content="jiqingye">
-  <title>YE JIQING Lab · 药物化学 · 庄重科技</title>
+  <title>YE JIQING Lab</title>
 
   <!-- 保留原始CSS (用于基础框架兼容，但将被覆盖视觉) -->
   <link href="./files/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="./files/aos.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="./files/style.css" type="text/css" rel="stylesheet" media="screen,projection">
 
-  <!-- 全新设计：庄重·深空·科技感 · 药物化学风格 -->
+  <!-- 全新设计：庄重·深空·科技感 · 药物化学风格 (已去除导航三角) -->
   <style>
     /* 字体系统：专业/清晰 */
     @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,500;14..32,600;14..32,700&family=Roboto+Mono:wght@400;600&display=swap');
@@ -90,6 +90,11 @@
     .nav-wrapper ul li a:hover::after,
     .nav-wrapper ul li a.active::after {
       width: 70%;
+    }
+
+    /* 关键修复：去掉导航菜单项前面的三角形 (因为全局li设置了伪元素) */
+    .nav-wrapper ul li::before {
+      content: none !important;
     }
 
     /* 主容器 — 全屏区块，滚动自然 */
@@ -194,18 +199,15 @@
       box-shadow: 0 0 20px #4f9fff;
     }
 
-    /* 列表修饰 — 稳重 */
-    ul {
-      list-style: none;
-    }
-    li {
+    /* 列表修饰 — 稳重 (仅用于正文列表，导航已覆盖) */
+    ul:not(.nav-wrapper ul) li {
       margin: 16px 0;
       font-size: 1.1rem;
       padding-left: 28px;
       position: relative;
       color: #d2e0f0;
     }
-    li::before {
+    ul:not(.nav-wrapper ul) li::before {
       content: "▹";
       color: #4f9fff;
       position: absolute;
@@ -337,7 +339,7 @@
 </head>
 <body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
 
-  <!-- 导航 (完全保留原链接) -->
+  <!-- 导航 (完全保留原链接) 三角已去除 -->
   <div class="navbar-fixed">
     <nav class="white">
       <div class="nav-wrapper container">
@@ -403,7 +405,7 @@
     </div>
   </div>
 
-  <!-- ========= CV ========= 时间轴式列表 + 预留 -->
+  <!-- ========= CV ========= 时间轴式列表 + 预留 (列表三角保留) -->
   <div id="cv" class="section scrollspy">
     <div class="glass-panel">
       <h2 class="title">Dr. YE Jiqing (叶霁青)</h2>
@@ -621,49 +623,49 @@
         <!-- 冯晓文 -->
         <div class="member-card">
           <img class="responsive-img" src="./images/fengxiaowen.jpg" alt="FENG Xiaowen">
-          <div class="member-name">FENG Xiaowen(冯晓文)</div>
+          <div class="member-name">FENG Xiaowen</div>
           <div class="member-quote"><i>Sow nothing, reap nothing.</i></div>
           <div class="member-cv">Scientific Officer. AHMU (2017–present)<br>MSc CPU (2014–2017)<br>BSc AHMU (2008–2013)</div>
         </div>
         <!-- 陈楚 -->
         <div class="member-card">
           <img class="responsive-img" src="./images/chenchu.jpg" alt="CHEN Chu">
-          <div class="member-name">CHEN Chu(陈楚)</div>
+          <div class="member-name">CHEN Chu</div>
           <div class="member-quote"><i>Stay Hungry. Stay Foolish.</i></div>
           <div class="member-cv">MSc AHMU (2023–present)<br>BSc AHMU (2020–2022)<br>Anhui Medical College (2017–2020)</div>
         </div>
         <!-- 李冰洁 -->
         <div class="member-card">
           <img class="responsive-img" src="./images/libingjie.jpg" alt="LI Bingjie">
-          <div class="member-name">LI Bingjie(李冰洁)</div>
+          <div class="member-name">LI Bingjie</div>
           <div class="member-quote"><i>No Pains. No Gains.</i></div>
           <div class="member-cv">MSc AHMU (2023–present)<br>BSc AHMU (2021–2023)<br>Anqing Medical College (2018–2021)</div>
         </div>
         <!-- 韩琪琪 -->
         <div class="member-card">
           <img class="responsive-img" src="./images/hanqiqi.jpg" alt="HAN Qiqi">
-          <div class="member-name">HAN Qiqi(韩琪琪)</div>
+          <div class="member-name">HAN Qiqi</div>
           <div class="member-quote"><i>Life is real, life is earnest.</i></div>
           <div class="member-cv">MSc AHMU (2024–present)<br>BSc Wannan Medical University (2019–2023)</div>
         </div>
         <!-- 董倩倩 -->
         <div class="member-card">
           <img class="responsive-img" src="./images/dongqianqian.jpg" alt="DONG Qianqian">
-          <div class="member-name">DONG Qianqian(董倩倩)</div>
+          <div class="member-name">DONG Qianqian</div>
           <div class="member-quote"><i>Doubt is the key to knowledge.</i></div>
           <div class="member-cv">MSc AHMU (2024–present)<br>BSc Jinzhou Medical University (2020–2024)</div>
         </div>
         <!-- 许丽红 -->
         <div class="member-card">
           <img class="responsive-img" src="./images/xulihong.jpg" alt="XU Lihong">
-          <div class="member-name">XU Lihong(许丽红)</div>
+          <div class="member-name">XU Lihong</div>
           <div class="member-quote"><i>The best is yet to come.</i></div>
           <div class="member-cv">MSc AHMU (2025–present)<br>BSc Wannan Medical University (2020–2024)</div>
         </div>
         <!-- 陈杰 -->
         <div class="member-card">
           <img class="responsive-img" src="./images/chenjie.jpg" alt="CHEN Jie">
-          <div class="member-name">CHEN Jie(陈杰)</div>
+          <div class="member-name">CHEN Jie</div>
           <div class="member-quote"><i>Wise men learn by other men's mistakes.</i></div>
           <div class="member-cv">MSc AHMU (2025–present)<br>BSc Shanxi Medical University (2021–2025)</div>
         </div>
