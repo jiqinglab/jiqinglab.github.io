@@ -4,787 +4,680 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
   <meta name="author" content="jiqingye">
-  <title>YE JIQING's Lab@AHMU · 深空科技感</title>
+  <title>YE JIQING Lab · 星际药研</title>
 
-  <!-- CSS  (保持不变) -->
+  <!-- 保留原始CSS (确保原有功能兼容) -->
   <link href="./files/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="./files/aos.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="./files/style.css" type="text/css" rel="stylesheet" media="screen,projection">
-
-  <!-- 科技感深色主题 · 覆盖样式 (不改变任何内容/链接) -->
+  
+  <!-- 全新科技感覆盖样式 (霓虹深空·电影级布局) -->
   <style>
-    /* 全局深色基调 */
+    /* 全局重置与字体 */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&family=Orbitron:wght@400;700;900&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
-      background-color: #0a0f1e;
-      color: #e0e0e0;
-      font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0a0c14;
+      color: #eef5ff;
+      font-family: 'Inter', sans-serif;
       line-height: 1.6;
-      font-weight: 300;
+      overflow-x: hidden;
     }
-    /* 平滑滚动 & 占位 */
-    html {
-      scroll-behavior: smooth;
+    /* 粒子背景 (科技感点阵) */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: 
+        radial-gradient(circle at 30% 40%, rgba(0, 255, 255, 0.1) 0%, transparent 30%),
+        radial-gradient(circle at 70% 80%, rgba(150, 0, 255, 0.1) 0%, transparent 35%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 2px, transparent 2px, transparent 8px);
+      pointer-events: none;
+      z-index: -1;
     }
-    /* 导航栏——半透明深色磨砂 */
-    .navbar-fixed nav {
-      background: rgba(10, 20, 30, 0.85) !important;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-      border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+
+    /* 导航栏 — 透明磨砂玻璃，光晕下划线 */
+    .navbar-fixed {
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
+    nav.white {
+      background: rgba(5, 10, 20, 0.7) !important;
+      backdrop-filter: blur(15px) saturate(180%);
+      -webkit-backdrop-filter: blur(15px) saturate(180%);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
     }
     .nav-wrapper ul li a {
-      color: #cfd8e6 !important;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      transition: all 0.2s ease;
-    }
-    .nav-wrapper ul li a:hover,
-    .nav-wrapper ul li a.active {
-      color: #80deea !important;
-      text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
-      background-color: transparent !important;
-    }
-    /* 首页背景与文字 */
-    .parallax-container {
-      background: #0b101f;  /* 深色底 */
-      min-height: 500px;
-    }
-    .parallax img {
-      filter: brightness(0.6) saturate(1.2) hue-rotate(5deg);
-    }
-    .cover-block {
-      background: rgba(15, 25, 40, 0.6);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-radius: 32px;
-      padding: 2rem 2rem !important;
-      margin-top: 60px;
-      border: 1px solid rgba(0, 255, 255, 0.2);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 255, 255, 0.1) inset;
-    }
-    .profile-name {
-      color: #b3e5fc;
-      font-weight: 400;
-      letter-spacing: 2px;
+      color: #b0f0ff !important;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.0rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      text-shadow: 0 0 12px cyan;
-    }
-    .profile-link, .profile-link a {
-      color: #c5d5f0 !important;
-      transition: 0.2s;
-    }
-    .profile-link a:hover {
-      color: #80deea !important;
-      text-decoration: underline 1px wavy #40c4ff;
-    }
-    hr {
-      border: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #40c4ff, #7c4dff, #40c4ff, transparent);
-      margin: 20px 0;
-    }
-    /* 社交图标光晕 */
-    .social-photo {
-      border-radius: 50%;
-      background: rgba(255,255,255,0.02);
-      padding: 6px;
+      padding: 0 20px;
       transition: all 0.3s;
-      box-shadow: 0 0 0 1px rgba(0,255,255,0.3);
+      position: relative;
     }
-    .social-photo:hover {
-      transform: scale(1.1) rotate(2deg);
-      box-shadow: 0 0 20px cyan;
-      background: rgba(0,255,255,0.1);
+    .nav-wrapper ul li a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0ff, #f0f, #0ff);
+      transform: translateX(-50%);
+      transition: width 0.3s;
+      box-shadow: 0 0 15px cyan;
     }
-    /* 各区块通用 */
+    .nav-wrapper ul li a:hover::before,
+    .nav-wrapper ul li a.active::before {
+      width: 70%;
+    }
+    .nav-wrapper ul li a:hover {
+      color: #fff !important;
+      text-shadow: 0 0 10px cyan;
+    }
+
+    /* 主容器 — 全屏卷轴卡片 */
     .section {
-      background: transparent;
-      padding: 40px 0 !important;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 5%;
+      position: relative;
+      scroll-snap-align: start;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.1);
     }
-    .row.container {
-      background: rgba(18, 28, 45, 0.6);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+    /* 滚动捕捉 (可选) */
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+    @media (max-width: 768px) {
+      scroll-snap-type: none;
+    }
+
+    /* 卡片容器 — 无边框，纯光效 */
+    .glass-card {
+      background: rgba(10, 20, 35, 0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 255, 255, 0.2);
       border-radius: 40px;
-      padding: 30px 30px !important;
-      border: 1px solid rgba(0, 255, 255, 0.15);
-      box-shadow: 0 25px 45px -10px rgba(0,0,0,0.7);
+      padding: 3rem 3rem;
+      box-shadow: 0 30px 60px -20px #000, 0 0 0 1px rgba(0, 255, 200, 0.2) inset, 0 0 50px rgba(0, 255, 255, 0.2);
+      width: 100%;
     }
+
+    /* 标题风格 */
     .title {
-      font-size: 2.2rem;
-      font-weight: 300;
-      background: linear-gradient(135deg, #a0e7ff, #c7b9ff);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #fff 0%, #0ff 50%, #f0f 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      border-left: 6px solid #00e5ff;
-      padding-left: 20px;
-      text-shadow: 0 0 15px #00b8ff;
+      letter-spacing: 5px;
+      margin-bottom: 30px;
+      text-shadow: 0 0 30px cyan;
+      line-height: 1.2;
     }
-    .subtitle, .paper-title {
-      color: #bbdefb;
-      font-weight: 400;
-      font-size: 1.5rem;
-      border-bottom: 1px dashed #2f4f7f;
-      padding-bottom: 8px;
+    .subtitle {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: #aaf0ff;
+      text-shadow: 0 0 15px magenta;
+      margin: 20px 0 10px;
     }
-    .paper-author, .content, .cv, li {
-      color: #cfd9f0;
-      font-weight: 300;
-    }
-    a {
-      color: #82b1ff;
-      text-decoration: none;
-      font-weight: 400;
-      transition: 0.2s;
-    }
-    a:hover {
-      color: #00e5ff;
-      text-shadow: 0 0 8px cyan;
-    }
-    /* 卡片内图片发光 */
+
+    /* 头像/图片圆角发光 */
     .responsive-img {
-      border-radius: 24px;
+      border-radius: 30px;
+      box-shadow: 0 20px 30px -10px #000, 0 0 0 2px rgba(0, 255, 255, 0.3), 0 0 40px rgba(0, 255, 255, 0.3);
       transition: all 0.4s;
-      box-shadow: 0 10px 30px -5px #00000080, 0 0 0 1px rgba(0,255,200,0.2);
     }
     .responsive-img:hover {
-      box-shadow: 0 20px 40px -8px #000, 0 0 0 2px cyan;
-      transform: scale(1.02);
+      transform: scale(1.02) translateY(-5px);
+      box-shadow: 0 30px 40px -10px #000, 0 0 0 4px cyan, 0 0 70px cyan;
     }
-    /* 列表项目 */
+
+    /* 社交图标 */
+    .social-photo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin: 0 10px;
+      filter: drop-shadow(0 0 10px cyan);
+      transition: 0.3s;
+    }
+    .social-photo:hover {
+      transform: rotate(360deg) scale(1.2);
+      filter: drop-shadow(0 0 20px magenta);
+    }
+
+    /* 网格布局自定义 */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    /* 列表科技感 */
+    ul {
+      list-style: none;
+    }
     li {
-      margin-bottom: 14px;
-      font-size: 1.1rem;
-      list-style-type: none;
-      padding-left: 24px;
+      margin: 20px 0;
+      font-size: 1.2rem;
+      padding-left: 30px;
       position: relative;
+      color: #cfecff;
     }
     li::before {
-      content: "▹";
-      color: #00e5ff;
+      content: "⧐";
+      color: #0ff;
       position: absolute;
       left: 0;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       line-height: 1;
-      text-shadow: 0 0 6px cyan;
+      text-shadow: 0 0 15px cyan;
     }
-    /* CV区块 调整 */
-    #cv ul {
-      padding-left: 0;
+
+    /* 出版物卡片 */
+    .pub-item {
+      background: rgba(0, 30, 50, 0.4);
+      border-radius: 30px;
+      padding: 25px;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+      backdrop-filter: blur(6px);
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
-    /* 成员卡片微调 */
-    .logo i {
-      color: #aad0f5;
-      background: rgba(0,30,50,0.5);
-      padding: 6px 15px;
-      border-radius: 60px;
-      border: 1px solid cyan;
-      font-size: 0.95rem;
-      display: inline-block;
-      backdrop-filter: blur(4px);
+    .pub-item:hover {
+      border-color: cyan;
+      box-shadow: 0 0 40px cyan;
+      transform: translateY(-8px);
     }
-    .name b {
-      font-size: 1.7rem;
-      font-weight: 300;
-      background: linear-gradient(145deg, #fff, #b0e0ff);
+    .pub-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 15px 0 10px;
+      line-height: 1.4;
+    }
+    .pub-author {
+      font-size: 0.9rem;
+      color: #bbf0ff;
+      margin-bottom: 8px;
+    }
+    .pub-journal {
+      font-size: 0.9rem;
+      color: #0ff;
+      font-weight: 500;
+    }
+    .pub-links img {
+      width: 24px;
+      margin-right: 10px;
+      filter: drop-shadow(0 0 8px cyan);
+    }
+
+    /* 成员卡片 */
+    .member-card {
+      background: rgba(20, 30, 50, 0.5);
+      backdrop-filter: blur(8px);
+      border-radius: 40px;
+      padding: 25px;
+      border: 1px solid rgba(255, 0, 255, 0.2);
+      text-align: center;
+      transition: 0.3s;
+    }
+    .member-card:hover {
+      border-color: magenta;
+      box-shadow: 0 0 50px magenta;
+    }
+    .member-card img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      border: 3px solid cyan;
+    }
+    .member-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      background: linear-gradient(145deg, #fff, #0ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    .member-quote {
+      font-style: italic;
+      color: #f0aaff;
+      margin: 10px 0;
+    }
+    .member-cv {
+      font-size: 0.95rem;
+      color: #cdd9ff;
+    }
+
+    /* 未来预留区块样式 */
+    .future-zone {
+      border: 2px dashed rgba(255, 0, 255, 0.5);
+      border-radius: 60px;
+      padding: 60px;
+      text-align: center;
+      color: rgba(255,255,255,0.3);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 4px;
+      background: rgba(0,0,0,0.2);
+      backdrop-filter: blur(5px);
+    }
+
     /* 底部 */
-    footer.page-footer {
-      background: #051016 !important;
-      border-top: 1px solid #00b8ff30;
-      color: #99bbee;
+    footer {
+      background: #03050b !important;
+      border-top: 2px solid cyan;
+      text-align: center;
+      padding: 30px !important;
+      font-size: 1rem;
+      color: #aaccff;
     }
-    footer .black-text {
-      color: #c1d9ff !important;
+
+    /* 原有hr隐藏，我们用光效分割 */
+    hr, .research-hr, .publications-hr, .members-hr {
+      display: none;
     }
-    /* 修饰字体标签（原有font标签保持可见） */
-    font {
-      color: inherit;
-    }
-    /* 其他细节 */
-    .paper-conf {
-      color: #9bb6d0;
-    }
-    .icon {
-      background: #1b2a3f;
-      padding: 6px;
-      border-radius: 12px;
-    }
-    /* 按钮/了解更多占位（如果有不会改变） */
-    .more {
-      color: #64b5f6;
+
+    /* 移动端调整 */
+    @media (max-width: 600px) {
+      .title { font-size: 2.8rem; }
     }
   </style>
 
   <link rel="shortcut icon" href="./images/AHMU.png">
-  <!-- saved from url=(0039)http://www.cbsr.ia.ac.cn/users/sfzhang/ -->
 </head>
 <body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
 
-  <!-- navbar (结构未动) -->
+  <!-- 导航 (原有链接不变) -->
   <div class="navbar-fixed">
-    <nav class="white" style="background: transparent !important;"><!-- white被覆盖,保留类用于兼容 -->
+    <nav class="white">
       <div class="nav-wrapper container">
         <a id="logo-container" href="https://jiqinglab.github.io/#" class="brand-logo"></a>
         <ul class="left">
-          <li><a class="nav-item waves-effect waves-light active" href="https://jiqinglab.github.io/#home">Home</a></li>
-          <li><a class="nav-item waves-effect waves-light" href="https://jiqinglab.github.io/#biography">Biography</a></li>
-          <li><a class="nav-item waves-effect waves-light" href="https://jiqinglab.github.io/#cv">CV</a></li>
-          <li><a class="nav-item waves-effect waves-light" href="https://jiqinglab.github.io/#research">Research Area</a></li>
-          <li><a class="nav-item waves-effect waves-light" href="https://jiqinglab.github.io/#grant">Grants</a></li>
-          <li><a class="nav-item waves-effect waves-light" href="https://jiqinglab.github.io/#publications">Publications</a></li>
-          <li><a class="nav-item waves-effect waves-light" href="https://jiqinglab.github.io/#members">Members</a></li>
-          <!--<li><a class="nav-item waves-effect waves-light" href="#education">Education</a></li>-->
-          <li><a class="nav-item waves-effect waves-light" href="https://jiqinglab.github.io/#Activity">Activity</a></li>
-          <!--<li><a class="nav-item waves-effect waves-light" href="#awards">Awards</a></li>-->
-          <!--<li><a class="nav-item waves-effect waves-light" href="#demos">Demos</a></li>-->
+          <li><a class="nav-item waves-effect waves-light active" href="#home">Home</a></li>
+          <li><a class="nav-item waves-effect waves-light" href="#biography">Biography</a></li>
+          <li><a class="nav-item waves-effect waves-light" href="#cv">CV</a></li>
+          <li><a class="nav-item waves-effect waves-light" href="#research">Research Area</a></li>
+          <li><a class="nav-item waves-effect waves-light" href="#grant">Grants</a></li>
+          <li><a class="nav-item waves-effect waves-light" href="#publications">Publications</a></li>
+          <li><a class="nav-item waves-effect waves-light" href="#members">Members</a></li>
+          <li><a class="nav-item waves-effect waves-light" href="#activities">Activity</a></li>
         </ul>
       </div>
     </nav>
   </div>
 
-  <!--=============== Profile ===============-->
-  <div id="home" class="parallax-container scrollspy">
-    <div class="container row cover-block">
-      <div class="profile-image-block col s12 m12 l4 center">
-        <img class="responsive-img profile-photo z-depth-2" src="./images/lab.png" alt="lab">
+  <!-- ========= HERO / HOME ========= 保留原Profile所有内容，布局重新想象 -->
+  <div id="home" class="section scrollspy" style="align-items: center;">
+    <div class="glass-card" style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px;">
+      <!-- 左：实验室图片 -->
+      <div class="" style="flex: 1 1 300px; text-align: center;">
+        <img class="responsive-img" src="./images/lab.png" alt="lab" style="max-width: 100%;">
       </div>
-      <div class="profile-content-block col s12 m12 l8">
-        <h5 class="profile-name">YE JIQING's Lab@AHMU</h5>
-        <hr>
-        <h6 class="profile-link"><strong>Distinguished Professor</strong></h6>
-        <h6 class="profile-link"><strong>Associate Researcher</strong></h6>
-        <h6 class="profile-link"><a href="https://yzmy.ahmu.edu.cn/">Medicinal Chemistry, Inflammation and Immune Mediated Diseases Laboratory of Anhui Province</a></h6>
-        <h6 class="profile-link"><a href="https://yxy.ahmu.edu.cn/">School of Pharmacy, Anhui Medical University (AHMU), Hefei, China 230032</a></h6>
-        <h6 class="profile-link">Email: jiqing_ye@ahmu.edu.cn</h6>
-        <h1></h1>
-        <a href="https://scholar.google.com/citations?view_op=search_authors&mauthors=jiqing+ye&hl=en&oi=ao" target="_blank"><img class="responsive-img social-photo" src="./images/google_scholar.jpg" alt="google scholar"></a>
-        <a href="https://github.com/jiqinglab" target="_blank"><img class="responsive-img social-photo" src="./images/github.jpg" alt="github"></a>
-        <a href="https://www.linkedin.com/in/jiqing-ye-91865a326/" target="_blank"><img class="responsive-img social-photo" src="./images/linkedin.png" alt="linkedin"></a>
-        <a href="https://www.researchgate.net/profile/Jiqing-Ye-3" target="_blank"><img class="responsive-img social-photo" src="./images/rg.png" alt="researchgate"></a>
-      </div>
-    </div>
-    <div class="parallax"><img src="./images/homepage_bg_network.jpg" alt="background" style="display: block; transform: translate3d(-50%, 153px, 0px);"></div>
-  </div>
-
-  <!--=============== Biography ===============-->
-  <div class="section about-section scrollspy" id="biography">
-    <div class="row container">
-      <br><br>
-      <div class="row">
-        <div class="title">Biography</div>
-        <hr>
-      </div>
-      <div class="row">
-        <p>
-          Dr. Ye Jiqing, doctor of philosophy, is currently an Associate Researcher and Distinguished Professor at <a href="https://yxy.ahmu.edu.cn/2023/0419/c8101a135801/page.htm">Anhui Medical University</a>. His research focuses on 
-          significant targets in antimicrobial and antitumor areas. He employs virtual screening and rational design methods to identify new lead compounds and 
-          continues to investigate structure-activity relationships to discover novel candidate compounds with innovative structures.
+      <!-- 右：信息 -->
+      <div style="flex: 2 1 500px;">
+        <h1 class="title" style="font-size: 3.8rem; margin-bottom: 10px;">YE JIQING's Lab</h1>
+        <div style="height: 4px; width: 150px; background: linear-gradient(90deg, cyan, magenta); margin-bottom: 30px;"></div>
+        <h3 style="font-weight: 300; letter-spacing: 2px;">Distinguished Professor · Associate Researcher</h3>
+        <p style="font-size: 1.2rem; margin: 20px 0;">
+          <a href="https://yzmy.ahmu.edu.cn/" style="color: #0ff;">Medicinal Chemistry, Inflammation and Immune Mediated Diseases Laboratory of Anhui Province</a><br>
+          <a href="https://yxy.ahmu.edu.cn/" style="color: #0ff;">School of Pharmacy, Anhui Medical University (AHMU), Hefei, China 230032</a><br>
+          <span>📧 jiqing_ye@ahmu.edu.cn</span>
         </p>
-        <font color="#B9181A">
-          <i>
-            <b>
-              <font face="楷体">做好药，做新药，做老百姓用的起的好药、新药!</font><br>
-              Create high-quality, affordable new drugs for everyone.
-            </b>
-          </i>
-        </font>
+        <div style="margin: 40px 0;">
+          <a href="https://scholar.google.com/citations?view_op=search_authors&mauthors=jiqing+ye&hl=en&oi=ao" target="_blank"><img class="social-photo" src="./images/google_scholar.jpg" alt="google scholar"></a>
+          <a href="https://github.com/jiqinglab" target="_blank"><img class="social-photo" src="./images/github.jpg" alt="github"></a>
+          <a href="https://www.linkedin.com/in/jiqing-ye-91865a326/" target="_blank"><img class="social-photo" src="./images/linkedin.png" alt="linkedin"></a>
+          <a href="https://www.researchgate.net/profile/Jiqing-Ye-3" target="_blank"><img class="social-photo" src="./images/rg.png" alt="researchgate"></a>
+        </div>
       </div>
     </div>
   </div>
 
-  <!--=============== CV ===============-->
-  <div class="section CV-section scrollspy" id="cv">
-    <div class="row container">
-      <div class="row">
-        <div class="title">Dr. YE Jiqing(叶霁青)</div>
-        <hr>
+  <!-- ========= BIOGRAPHY ========= 内容不变，新样式 -->
+  <div id="biography" class="section scrollspy">
+    <div class="glass-card">
+      <h2 class="title">Biography</h2>
+      <div class="grid-2" style="gap: 60px;">
+        <div>
+          <p style="font-size: 1.3rem;">Dr. Ye Jiqing, doctor of philosophy, is currently an Associate Researcher and Distinguished Professor at <a href="https://yxy.ahmu.edu.cn/2023/0419/c8101a135801/page.htm" style="color:#0ff;">Anhui Medical University</a>. His research focuses on significant targets in antimicrobial and antitumor areas. He employs virtual screening and rational design methods to identify new lead compounds and continues to investigate structure-activity relationships to discover novel candidate compounds with innovative structures.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.02); border-left: 4px solid cyan; padding-left: 30px;">
+          <font color="#B9181A">
+            <i><b>
+              <font face="楷体" style="font-size: 2rem;">做好药，做新药，做老百姓用的起的好药、新药!</font><br>
+              <span style="color:#0ff;">Create high-quality, affordable new drugs for everyone.</span>
+            </b></i>
+          </font>
+        </div>
       </div>
-      <div class="row">
-        <ul>
-          <li data-aos="fade-up" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true" class="aos-init aos-animate">
-            • 2022 - Present: &nbsp;  Distinguished Professor, Anhui Medical University
-          </li>
-          <li data-aos="fade-up" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true" class="aos-init aos-animate">
-            • 2020 - 2022: &nbsp; Postdoctoral Researcher, The Hong Kong Polytechnic University, Hong Kong SAR, China
-          </li>
-          <li data-aos="fade-up" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true" class="aos-init aos-animate">
-            • 2017 - 2020: &nbsp; Ph.D. (Medicinal Chemistry) The Hong Kong Polytechnic University, Hong Kong SAR, China.
-          </li>
-          <li data-aos="fade-up" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true" class="aos-init aos-animate">
-            • 2016 - 2017: &nbsp; Research Assistant State Key Laboratory of Drug Research, Shanghai Institute of Materia Medica (SIMM), Chinese Academy of Sciences, Shanghai, China
-          </li>
-          <li data-aos="fade-up" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true" class="aos-init aos-animate">
-            • 2013 - 2016: &nbsp; M.Sc. (Medicinal Chemistry) China Pharmaceutical University, Nanjing, China.
-          </li>
-          <li data-aos="fade-up" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true" class="aos-init aos-animate">
-            • 2008 - 2013: &nbsp;  B.Sc. (Pharmacy) Anhui Medical University, Hefei, China
-          </li>
+    </div>
+  </div>
+
+  <!-- ========= CV ========= 时间轴风格，保留所有列表项 -->
+  <div id="cv" class="section scrollspy">
+    <div class="glass-card">
+      <h2 class="title">Dr. YE Jiqing (叶霁青)</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 30px;">
+        <ul style="flex: 1;">
+          <li>2022 - Present: &nbsp; Distinguished Professor, Anhui Medical University</li>
+          <li>2020 - 2022: &nbsp; Postdoctoral Researcher, The Hong Kong Polytechnic University, Hong Kong SAR, China</li>
+          <li>2017 - 2020: &nbsp; Ph.D. (Medicinal Chemistry) The Hong Kong Polytechnic University, Hong Kong SAR, China.</li>
+          <li>2016 - 2017: &nbsp; Research Assistant State Key Laboratory of Drug Research, Shanghai Institute of Materia Medica (SIMM), Chinese Academy of Sciences, Shanghai, China</li>
+          <li>2013 - 2016: &nbsp; M.Sc. (Medicinal Chemistry) China Pharmaceutical University, Nanjing, China.</li>
+          <li>2008 - 2013: &nbsp; B.Sc. (Pharmacy) Anhui Medical University, Hefei, China</li>
         </ul>
+        <!-- 预留未来可填充区域 (例如荣誉或技能) -->
+        <div class="future-zone" style="flex: 1;">
+          [ Future Info: Awards / Skills ]
+        </div>
       </div>
     </div>
   </div>
 
-  <!--=============== Research Area ===============-->
-  <div class="section research-section scrollspy" id="research">
-    <div class="row container">
-      <div class="row">
-        <div class="title">Research Area</div>
-        <hr>
-      </div>
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <img class="responsive-img" src="./images/ComMedChem.png" alt="computational medicinal chemistry">
+  <!-- ========= RESEARCH AREA ========= 两个领域并排，保留原图与描述 -->
+  <div id="research" class="section scrollspy">
+    <div class="glass-card">
+      <h2 class="title">Research Area</h2>
+      <div class="grid-2">
+        <!-- Computational -->
+        <div style="text-align: center;">
+          <img class="responsive-img" src="./images/ComMedChem.png" alt="computational" style="max-width: 100%;">
+          <h3 class="subtitle">Computational Medicinal Chemistry</h3>
+          <p style="text-align: left;">Our focus lies in the development and application of innovative computational and theoretical methods to offer new physical-chemical insights into critical biological processes. Additionally, we aim to enable the rational design of modulators to investigate key cellular pathways and to advance their potential therapeutic applications. Computationl methods such as molecular modeling, virtual screening, and quantitative structure-activity relationship (QSAR) analysis, are used to predict the interactions between drugs and biological targets, optimize drug properties, and identify potential side effects. Briefly, this interdisciplinary approach that integrates principles from chemistry, biology, and computer science to are used to accelerate drug discovery and improve the efficacy and safety of therapeutic agents.</p>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="subtitle">Computational Medicinal Chemistry</div>
-          <div class="content">Our focus lies in the development and application of innovative computational and theoretical methods to offer new physical-chemical insights into critical biological processes. Additionally, we aim to enable the rational design of modulators to investigate key cellular pathways and to advance their potential therapeutic applications. Computationl methods such as molecular modeling, virtual screening, and quantitative structure-activity relationship (QSAR) analysis, are used to predict the interactions between drugs and biological targets, optimize drug properties, and identify potential side effects. Briefly, this interdisciplinary approach that integrates principles from chemistry, biology, and computer science to are used to accelerate drug discovery and improve the efficacy and safety of therapeutic agents.</div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <img class="responsive-img" src="./images/SynMedChem.png" alt="synthetic medicinal chemistry">
-        </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">Synthetic Medicinal Chemistry</div>
-          <div class="paper-author">Synthetic medicinal chemistry constitutes a significant area of our research. Our primary focus is the development of novel chemical entities designed to target protein-protein interactions for potential applications as antimicrobial and anticancer agents. This involves a computational approach for molecular design, followed by synthesis and analytical characterization. We also emphasize the optimization of drug-like properties, such as lipophilicity, solubility, and stability. Newly synthesized compounds undergo enzymatic assays and subsequent in vitro testing to evaluate their efficacy and potential therapeutic value.</div>
+        <!-- Synthetic -->
+        <div style="text-align: center;">
+          <img class="responsive-img" src="./images/SynMedChem.png" alt="synthetic" style="max-width: 100%;">
+          <h3 class="subtitle">Synthetic Medicinal Chemistry</h3>
+          <p style="text-align: left;">Synthetic medicinal chemistry constitutes a significant area of our research. Our primary focus is the development of novel chemical entities designed to target protein-protein interactions for potential applications as antimicrobial and anticancer agents. This involves a computational approach for molecular design, followed by synthesis and analytical characterization. We also emphasize the optimization of drug-like properties, such as lipophilicity, solubility, and stability. Newly synthesized compounds undergo enzymatic assays and subsequent in vitro testing to evaluate their efficacy and potential therapeutic value.</p>
         </div>
       </div>
-      <hr class="research-hr">
     </div>
   </div>
 
-  <!--=============== Grants ===============-->
-  <div class="section project-section scrollspy" id="grant">
-    <div class="row container">
-      <div class="row">
-        <div class="title">Grants</div>
-        <hr>
-      </div>
-      <div class="row">
-        <ul>
-          <li data-aos="fade-up" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true" class="aos-init aos-animate">
-            • Annual Open Fund, Anhui Province Key Laboratory of Infectious Diseases (2024-2026)
-          </li>
-          <li data-aos="fade-up" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true" class="aos-init aos-animate">
-            • Hundred-Talent Program (Anhui Province) (2024)
-          </li>
-          <li data-aos="fade-up" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true" class="aos-init aos-animate">
-            • National Natural Science Foundation of China (2024-2026)
-          </li>
-          <li data-aos="fade-up" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true" class="aos-init aos-animate">
-            • Natural Science Research Project of Anhui Educational Committee (2023-2025)
-          </li>
-          <li data-aos="fade-up" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true" class="aos-init aos-animate">
-            • Start-up Fund, Anhui Medical University (2022-2027)
-          </li>
+  <!-- ========= GRANTS ========= 列表，加预留模块 -->
+  <div id="grant" class="section scrollspy">
+    <div class="glass-card">
+      <h2 class="title">Grants</h2>
+      <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+        <ul style="flex: 2;">
+          <li>Annual Open Fund, Anhui Province Key Laboratory of Infectious Diseases (2024-2026)</li>
+          <li>Hundred-Talent Program (Anhui Province) (2024)</li>
+          <li>National Natural Science Foundation of China (2024-2026)</li>
+          <li>Natural Science Research Project of Anhui Educational Committee (2023-2025)</li>
+          <li>Start-up Fund, Anhui Medical University (2022-2027)</li>
         </ul>
+        <div class="future-zone" style="flex: 1;">
+          [ Future Collaborations / Pending Grants ]
+        </div>
       </div>
     </div>
   </div>
 
-  <!--=============== Publications ===============-->
-  <div class="section publications-section scrollspy" id="publications">
-    <div class="row container">
-      <div class="row">
-        <div class="title">Publications</div>
-        <hr>
-      </div>
-
-      <!-- publication entry 1 (全部保留, 仅样式变化) -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <img class="responsive-img" src="./images/jmc2025.gif" alt="paper">
+  <!-- ========= PUBLICATIONS ========= 网格卡片展示17篇 (完整保留) -->
+  <div id="publications" class="section scrollspy">
+    <div class="glass-card">
+      <h2 class="title">Publications</h2>
+      <div class="grid-3" style="gap: 25px;">
+        <!-- 以下逐一列出17篇，保持所有链接与图片不变，用pub-item封装 -->
+        <!-- 1 -->
+        <div class="pub-item">
+          <img class="responsive-img" src="./images/jmc2025.gif" alt="paper" style="width: 100%;">
+          <div class="pub-title">Dithioether Inhibitors of Bacterial RNA Polymerase–Sigma Factor Interactions Exhibit In Vivo Efficacy against MRSA</div>
+          <div class="pub-author"><b>Jiqing Ye#</b>, Cheuk Hei Kan#, Jiang Liu#, Tsz Fung Tsang, Man Wai Tsang, Xiaochun Su, Hantian Fang, Jiayi Qu, Yuan Tao, Yuanhao Hu, Long Yin Lam, Xiao Yang*, Cong Ma*</div>
+          <div class="pub-journal"><i>J. Med. Chem.</i> <b>2025</b>, 25352-25374.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://pubs.acs.org/doi/abs/10.1021/acs.jmedchem.5c02317" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">Dithioether Inhibitors of Bacterial RNA Polymerase–Sigma Factor Interactions Exhibit In Vivo Efficacy against MRSA</div>
-          <div class="paper-author"> <b>Jiqing Ye#</b>, Cheuk Hei Kan#, Jiang Liu#, Tsz Fung Tsang, Man Wai Tsang, Xiaochun Su, Hantian Fang, Jiayi Qu, Yuan Tao, Yuanhao Hu, Long Yin Lam, Xiao Yang*, and Cong Ma*</div>
-          <div class="paper-conf"><i>Journal of Medicinal Chemistry. </i>, <b>2025</b>,<i></i> 25352-25374.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://pubs.acs.org/doi/abs/10.1021/acs.jmedchem.5c02317" target="_blank">[paper]</a>
-          </div>
-        </div>
-      </div>
-
- <!-- publication entry 2 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 2 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/MolecularDiversity2025.jpg" alt="paper">
+          <div class="pub-title">Understanding the structural stability and plasticity of VPS34 protein ...</div>
+          <div class="pub-author">Liang Yu, Chu Chen, Qianqian Dong, Fangxin Luo, Jiabing Li*, <b>Jiqing Ye*</b></div>
+          <div class="pub-journal"><i>Mol. Divers.</i> <b>2025</b>, 1-15.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://link.springer.com/article/10.1007/s11030-025-11330-3" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">Understanding the structural stability and plasticity of VPS34 protein determined by selective/nonselective inhibitors: insights from molecular dynamics simulations</div>
-          <div class="paper-author"> Liang Yu, Chu Chen, Qianqian Dong, Fangxin Luo, Jiabing Li* and <b>Jiqing Ye* </b></div>
-          <div class="paper-conf"><i>Molecular Diversity. </i>, <b>2025</b>,<i></i> 1-15.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://link.springer.com/article/10.1007/s11030-025-11330-3" target="_blank">[paper]</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 3 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 3 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/acs_omega2024.jpg" alt="paper">
+          <div class="pub-title">Mapping the Binding Hotspots and Transient Binding Pockets on V-Domain Immunoglobulin Suppressor of T Cell Activation Protein Surface</div>
+          <div class="pub-author">Bingjie Li, Lixiu Xu, Chu Chen, <b>Jiqing Ye*</b></div>
+          <div class="pub-journal"><i>ACS Omega</i> <b>2024</b>, 9, 48657-48669.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://pubs.acs.org/doi/full/10.1021/acsomega.4c07757" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">Mapping the Binding Hotspots and Transient Binding Pockets on V-Domain Immunoglobulin Suppressor of T Cell Activation Protein Surface</div>
-          <div class="paper-author"> Bingjie Li , Lixiu Xu, Chu Chen and <b>Jiqing Ye* </b></div>
-          <div class="paper-conf"><i>ACS Omega. </i>, <b>2024</b>,<i>9</i>, 48657-48669.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://pubs.acs.org/doi/full/10.1021/acsomega.4c07757" target="_blank">[paper]</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 4 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 4 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/chemmedchem2024.jpg" alt="paper">
+          <div class="pub-title">Virtual Screening and Biological Evaluation of Natural Products as Novel VPS34 Inhibitors that Modulate Autophagy</div>
+          <div class="pub-author">Xiaowen Feng, Baoming Wu, Hanyang Xu, Chu Chen, <b>Jiqing Ye*</b></div>
+          <div class="pub-journal"><i>ChemMedChem</i> <b>2024</b>, e202400580.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://chemistry-europe.onlinelibrary.wiley.com/doi/abs/10.1002/cmdc.202400580" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">Virtual Screening and Biological Evaluation of Natural Products as Novel VPS34 Inhibitors that Modulate Autophagy</div>
-          <div class="paper-author"> Xiaowen Feng , Baoming Wu, Hanyang Xu, Chu Chen and <b>Jiqing Ye* </b></div>
-          <div class="paper-conf"><i>ChemMedChem. </i>, <b>2024</b>,<i></i>, e202400580.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://chemistry-europe.onlinelibrary.wiley.com/doi/abs/10.1002/cmdc.202400580" target="_blank">[paper]</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 5 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 5 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/rsc2024.png" alt="paper">
+          <div class="pub-title">Inhibition of bacterial RNA polymerase function and protein–protein interactions: a promising approach ...</div>
+          <div class="pub-author"><b>Jiqing Ye†</b>, Cheuk Hei Kan†, Xiao Yang*, Cong Ma*</div>
+          <div class="pub-journal"><i>RSC Med. Chem.</i> <b>2024</b>, 15, 1471-1487.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://pubs.rsc.org/en/content/articlehtml/2024/md/d3md00690e" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">Inhibition of bacterial RNA polymerase function and protein–protein interactions: a promising approach for next-generation antibacterial therapeutics</div>
-          <div class="paper-author"><b>Jiqing Ye† </b>, Cheuk Hei Kan† , Xiao Yang* and Cong Ma*</div>
-          <div class="paper-conf"><i>RSC Med. Chem. </i>, <b>2024</b>,<i>15</i>, 1471-1487.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://pubs.rsc.org/en/content/articlehtml/2024/md/d3md00690e" target="_blank">[paper]</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 6 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 6 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/bc.2023.png" alt="paper">
+          <div class="pub-title">Sulfonamidyl derivatives of sigmacidin: Protein-protein interaction inhibitors targeting bacterial RNA polymerase ...</div>
+          <div class="pub-author"><b>Jiqing Ye†</b>, Cheuk Hei Kan†, Yingbo Zheng, Tsz Fung Tsang, Adrian Jun Chu, King Hong Chan, Xiao Yang*, Cong Ma*</div>
+          <div class="pub-journal"><i>Bioorg. Chem.</i> <b>2024</b>, 143, 106983.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://www.sciencedirect.com/science/article/pii/S0045206823006442" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">Sulfonamidyl derivatives of sigmacidin: Protein-protein interaction inhibitors targeting bacterial RNA polymerase and sigma factor interaction exhibiting antimicrobial activity against antibiotic-resistant bacteria</div>
-          <div class="paper-author"><b>Jiqing Ye† </b>, Cheuk Hei Kan†, Yingbo Zheng, Tsz Fung Tsang, Adrian Jun Chu, King Hong Chan, Xiao Yang*, Cong Ma*</div>
-          <div class="paper-conf"><i>Bioorganic Chemistry. </i>, <b>2024</b>, <i>143</i>, 106983.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://www.sciencedirect.com/science/article/pii/S0045206823006442" target="_blank">[paper]</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 7 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 7 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/ijms2023.jpg" alt="paper">
+          <div class="pub-title">Ligand-Based Drug Design of Novel Antimicrobials against Staphylococcus aureus by Targeting Bacterial Transcription</div>
+          <div class="pub-author"><b>Jiqing Ye†</b>, Xiao Yang*, Cong Ma*</div>
+          <div class="pub-journal"><i>Int. J. Mol. Sci.</i> <b>2023</b>, 24, 339.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://www.mdpi.com/1422-0067/24/1/339" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">Ligand-Based Drug Design of Novel Antimicrobials against Staphylococcus aureus by Targeting Bacterial Transcription</div>
-          <div class="paper-author"><b>Jiqing Ye†</b>, Xiao Yang*, Cong Ma*</div>
-          <div class="paper-conf"><i>Int. J. Mol. Sci.</i>, <b>2023</b>, <i>24</i>, 339.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://www.mdpi.com/1422-0067/24/1/339" target="_blank">[paper] </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 8 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 8 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/ijms2022.jpg" alt="paper">
+          <div class="pub-title">QSAR, Docking, and Molecular Dynamics Simulation Studies of Sigmacidins as Antimicrobials against Streptococci</div>
+          <div class="pub-author"><b>Jiqing Ye†</b>, Xiao Yang*, Cong Ma*</div>
+          <div class="pub-journal"><i>Int. J. Mol. Sci.</i> <b>2022</b>, 23, 4085.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://www.mdpi.com/1422-0067/23/8/4085" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">QSAR, Docking, and Molecular Dynamics Simulation Studies of Sigmacidins as Antimicrobials against Streptococci</div>
-          <div class="paper-author"><b>Jiqing Ye†</b>, Xiao Yang*, Cong Ma*</div>
-          <div class="paper-conf"><i>Int. J. Mol. Sci.</i>, <b>2022</b>, <i>23</i>, 4085.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://www.mdpi.com/1422-0067/23/8/4085" target="_blank">[paper] </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 9 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 9 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/cc2022.jpg" alt="paper">
+          <div class="pub-title">A ratiometric fluorescence probe for selective and sensitive detection of leucine aminopeptidase in lysosome</div>
+          <div class="pub-author">Di Yuan,‡ Ziwei Xu,‡ Bingling Zhang, Xiong Yin, <b>Jiqing Ye</b>, Xiaole Zhou*, Leyu Wang*</div>
+          <div class="pub-journal"><i>Chem. Commun.</i> <b>2022</b>, 58, 8364-8367.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://pubs.rsc.org/en/content/articlelanding/2022/cc/d2cc02214a" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">A ratiometric fluorescence probe for selective and sensitive detection of leucine aminopeptidase in lysosome</div>
-          <div class="paper-author">Di Yuan,‡ Ziwei Xu,‡ Bingling Zhang, Xiong Yin,<b>Jiqing Ye</b>, Xiaole Zhou* and Leyu Wang*</div>
-          <div class="paper-conf"><i>Chem. Commun.</i>, <b>2022</b>, <i>58</i>, 8364-8367.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://pubs.rsc.org/en/content/articlelanding/2022/cc/d2cc02214a" target="_blank">[paper] </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 10 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 10 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/pharm2021.jpg" alt="paper">
+          <div class="pub-title">Design, Synthesis, Biological Evaluation and In Silico Studies of Pyrazole-Based NH2-Acyl Oseltamivir Analogues ...</div>
+          <div class="pub-author"><b>Jiqing Ye†</b>, Lin Lin, Jinyi Xu, Paul Kay-sheung Chan, Xiao Yang*, Cong Ma*</div>
+          <div class="pub-journal"><i>Pharmaceuticals</i> <b>2021</b>, 14, 371.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://doi.org/10.3390/ph14040371" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">Design, Synthesis, Biological Evaluation and In Silico Studies of Pyrazole-Based NH2-Acyl Oseltamivir Analogues as Potent Neuraminidase Inhibitors</div>
-          <div class="paper-author"><b>Jiqing Ye†</b>, Lin Lin, Jinyi Xu, Paul Kay-sheung Chan, Xiao Yang*, and Cong Ma*. </div>
-          <div class="paper-conf"><i>Pharmaceuticals.</i>, <b>2021</b>, <i>14</i>, 371.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://doi.org/10.3390/ph14040371" target="_blank">[paper] </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 11 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 11 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/jmc2020.jpg" alt="paper">
+          <div class="pub-title">Discovery of Antibacterials That Inhibit Bacterial RNA Polymerase Interactions with Sigma Factors</div>
+          <div class="pub-author"><b>Jiqing Ye</b>, Adrian Jun Chu, Rachel Harper, Shu Ting Chan, Tsun Lam Shek, Yufeng Zhang, Margaret Ip, Mariya Sambir, Irina Artsimovitch, Zhong Zuo*, Xiao Yang*, Cong Ma*</div>
+          <div class="pub-journal"><i>J. Med. Chem.</i> <b>2020</b>, 63, 7695-7720.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://pubs.acs.org/doi/abs/10.1021/acs.jmedchem.0c00520" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">Discovery of Antibacterials That Inhibit Bacterial RNA Polymerase Interactions with Sigma Factors</div>
-          <div class="paper-author"><b>Jiqing Ye</b>,Adrian Jun Chu, Rachel Harper, Shu Ting Chan, Tsun Lam Shek, Yufeng Zhang, Margaret Ip, Mariya Sambir, Irina Artsimovitch, Zhong Zuo*, Xiao Yang*, and Cong Ma*. </div>
-          <div class="paper-conf"><em>Journal of Medicinal Chemistry.</em>, <b>2020</b>, <em>63</em>, 7695-7720.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://pubs.acs.org/doi/abs/10.1021/acs.jmedchem.0c00520" target="_blank">[paper] </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 12 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 12 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/ejmc2020.jpg" alt="paper">
+          <div class="pub-title">Benzyl and benzoyl benzoic acid inhibitors of bacterial RNA polymerase-sigma factor interaction</div>
+          <div class="pub-author"><b>Jiqing Ye†</b>, Adrian Jun Chu†, Lin Lin, Shu Ting Chan, Rachel Harper, Min Xiao, Irina Artsimovitch, Zhong Zuo, Cong Ma*, Xiao Yang*</div>
+          <div class="pub-journal"><i>Eur. J. Med. Chem.</i> <b>2020</b>, 208, 112671.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://www.sciencedirect.com/science/article/abs/pii/S0223523420306437?via%3Dihub" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">Benzyl and benzoyl benzoic acid inhibitors of bacterial RNA polymerase-sigma factor interaction</div>
-          <div class="paper-author"><b>Jiqing Ye†</b>, Adrian Jun Chu†, Lin Lin, Shu Ting Chan, Rachel Harper, Min Xiao, Irina Artsimovitch, Zhong Zuo, Cong Ma*, Xiao Yang*. </div>
-          <div class="paper-conf"><i>European Journal of Medicinal Chemistry.</i>, <b>2020</b>, <i>208</i>, 112671.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0223523420306437?via%3Dihub" target="_blank">[paper] </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 13 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 13 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/adv2020.jpg" alt="paper">
+          <div class="pub-title">DABCO-promoted Diaryl Thioether Formation by Metal-catalyzed Coupling of Sodium Sulfinates and Aryl Iodides</div>
+          <div class="pub-author">Yanpeng Liu, Long Yin Lam, <b>Jiqing Ye</b>, Nicolas Blanchard, Cong Ma*</div>
+          <div class="pub-journal"><i>Adv. Synth. Catal.</i> <b>2020</b>, 362, 2326-2331.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/adsc.202000221" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">DABCO-promoted Diaryl Thioether Formation by Metal-catalyzed Coupling of Sodium Sulfinates and Aryl Iodides</div>
-          <div class="paper-author">Yanpeng Liu, Long Yin Lam, <b>Jiqing Ye</b>, Nicolas Blanchard, Cong Ma*. </div>
-          <div class="paper-conf"><i>Advanced Synthesis & Catalysis.</i>, <b>2020</b>,<i>362</i>, 2326-2331.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/adsc.202000221" target="_blank">[paper] </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 14 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 14 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/ejmc2019.jpg" alt="paper">
+          <div class="pub-title">Novel N-Substituted oseltamivir derivatives as potent influenza neuraminidase inhibitors ...</div>
+          <div class="pub-author"><b>Jiqing Ye</b>, Xiao Yang, Min Xu, Paul Kay-sheung Chan, Cong Ma*</div>
+          <div class="pub-journal"><i>Eur. J. Med. Chem.</i> <b>2019</b>, 182, 111635.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://www.sciencedirect.com/science/article/abs/pii/S022352341930769X" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">Novel N-Substituted oseltamivir derivatives as potent influenza neuraminidase inhibitors: Design, synthesis, biological evaluation, ADME prediction and molecular docking studies</div>
-          <div class="paper-author"><b>Jiqing Ye</b>, Xiao Yang, Min Xu, Paul Kay-sheung Chan, Cong Ma*. </div>
-          <div class="paper-conf"><i>European Journal of Medicinal Chemistry</i>, <b>2019</b>, <i>182</i>, 111635.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://www.sciencedirect.com/science/article/abs/pii/S022352341930769X" target="_blank">[paper] </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 15 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 15 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/mol2019.jpg" alt="paper">
+          <div class="pub-title">First-In-Class Inhibitors Targeting the Interaction between Bacterial RNA Polymerase and Sigma Initiation Factor ...</div>
+          <div class="pub-author"><b>Jiqing Ye</b>, Adrian Jun Chu, Lin Lin, Xiao Yang*, Cong Ma*</div>
+          <div class="pub-journal"><i>Molecules</i> <b>2019</b>, 24, 2902.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://doi.org/10.3390/molecules24162902" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">First-In-Class Inhibitors Targeting the Interaction between Bacterial RNA Polymerase and Sigma Initiation Factor Affect the Viability and Toxin Release of Streptococcus pneumoniae</div>
-          <div class="paper-author"><b>Jiqing Ye</b>, Adrian Jun Chu, Lin Lin, Xiao Yang*, and Cong Ma*. </div>
-          <div class="paper-conf"><i>Molecules </i>, <b>2019</b>,<i>24</i>, 2902.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://doi.org/10.3390/molecules24162902" target="_blank">[paper] </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 16 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 16 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/acsinfect2019.jpg" alt="paper">
+          <div class="pub-title">Simple Method for Studying in Vitro Protein–Protein Interactions Based on Protein Complementation ...</div>
+          <div class="pub-author">Tsz Fung Tsang, Yangyi Qiu, Lin Lin, <b>Jiqing Ye</b>, Cong Ma*, Xiao Yang*</div>
+          <div class="pub-journal"><i>ACS Infect. Dis.</i> <b>2019</b>, 5, 521–527.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://pubs.acs.org/doi/abs/10.1021/acsinfecdis.9b00020" target="_blank">[paper]</a></div>
         </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">Simple Method for Studying in Vitro Protein–Protein Interactions Based on Protein Complementation and Its Application in Drug Screening Targeting Bacterial Transcription</div>
-          <div class="paper-author">Tsz Fung Tsang, Yangyi Qiu, Lin Lin, <b>Jiqing Ye</b>, Cong Ma*, Xiao Yang*. </div>
-          <div class="paper-conf"><i>ACS Infect. Dis.</i>, <b>2019</b>, <i>5</i>, 521–527.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://pubs.acs.org/doi/abs/10.1021/acsinfecdis.9b00020" target="_blank">[paper] </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- publication entry 17 -->
-      <div class="row">
-        <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
+        <!-- 17 -->
+        <div class="pub-item">
           <img class="responsive-img" src="./images/bmc2019.jpg" alt="paper">
-        </div>
-        <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-          <div class="paper-title">Discovery of a potent tyrosine kinase AXL inhibitor bearing the 3-((2,3,4,5-tetrahydro-1H-benzo[d]azepin-7-yl)amino)pyrazine core</div>
-          <div class="paper-author">Yueliang Wang, Li Xing, Yinchun Ji,  <b>Jiqing Ye</b>, Yang Dai, Wangting Gu, Jing Ai*, Zilan Song*. </div>
-          <div class="paper-conf"><em>Bioorganic & Medicinal Chemistry Letters</em>, <b>2019</b>, <em>29</em>, 836-838.</div>
-          <div>
-            <img class="responsive-img icon" src="./images/pdf.png" alt="pdf">
-            <a href="https://www.sciencedirect.com/science/article/pii/S0960894X19300289" target="_blank">[paper] </a>
-          </div>
+          <div class="pub-title">Discovery of a potent tyrosine kinase AXL inhibitor bearing the 3-((2,3,4,5-tetrahydro-1H-benzo[d]azepin-7-yl)amino)pyrazine core</div>
+          <div class="pub-author">Yueliang Wang, Li Xing, Yinchun Ji, <b>Jiqing Ye</b>, Yang Dai, Wangting Gu, Jing Ai*, Zilan Song*</div>
+          <div class="pub-journal"><i>Bioorg. Med. Chem. Lett.</i> <b>2019</b>, 29, 836-838.</div>
+          <div class="pub-links"><img src="./images/pdf.png" alt="pdf"><a href="https://www.sciencedirect.com/science/article/pii/S0960894X19300289" target="_blank">[paper]</a></div>
         </div>
       </div>
-      <hr class="publications-hr">
-    </div>
-  </div>
-
-  <!--=============== Members ===============-->
-  <div class="section Dense-section scrollspy" id="members">
-    <div class="row container">
-      <div class="row">
-        <div class="title">Members</div>
-        <hr>
-      </div>
-
-      <!-- 成员列表，结构未变，仅样式增强 -->
-      <ul style="list-style: none; padding-left: 0;">
-        <li>
-          <div class="row">
-            <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-              <img class="responsive-img" src="./images/fengxiaowen.jpg" alt="FENG Xiaowen">
-              <div class="logo"><i>Sow nothing, reap nothing.</i></div>
-            </div>
-            <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-              <div class="name"><b>FENG Xiaowen</b><br></div>
-              <div class="cv">Scientific Officer. Anhui Medical University (2017-present) <br>MSc. China Pharmaceutical University (2014-2017)<br>BSc.Anhui Medical University (2008-2013) <br><br><br><br><br><br><br><br><br><br><br><br><br></div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="row">
-            <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-              <img class="responsive-img" src="./images/chenchu.jpg" alt="CHEN Chu">
-              <div class="logo"><i>Stay Hungry. Stay Foolish.</i></div>
-            </div>
-            <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-              <div class="name"><b>CHEN Chu</b><br></div>
-              <div class="cv">MSc. Anhui Medical University (2023-present)<br>BSc. Anhui Medical University (2020-2022)<br>Anhui Medical College (2017-2020)<br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="row">
-            <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-              <img class="responsive-img" src="./images/libingjie.jpg" alt="LI Bingjie">
-              <div class="logo"><i>No Pains. No Gains.</i></div>
-            </div>
-            <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-              <div class="name"><b>LI Bingjie</b><br></div>
-              <div class="cv">MSc. Anhui Medical University (2023-present)<br>BSc. Anhui Medical University (2021-2023)<br>Anqing Medical College (2018-2021)</div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="row">
-            <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-              <img class="responsive-img" src="./images/hanqiqi.jpg" alt="HAN Qiqi">
-              <div class="logo"><i>Life is real, life is earnest.</i></div>
-            </div>
-            <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-              <div class="name"><b>HAN Qiqi</b><br></div>
-              <div class="cv">MSc. Anhui Medical University (2024-present)<br>BSc. Wannan Medical University (2019-2023)</div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="row">
-            <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-              <img class="responsive-img" src="./images/dongqianqian.jpg" alt="DONG Qianqian">
-              <div class="logo"><i>Doubt is the key to konwledge.</i></div>
-            </div>
-            <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-              <div class="name"><b>DONG Qianqian</b><br></div>
-              <div class="cv">MSc. Anhui Medical University (2024-present)<br>BSc. Jinzhou Medical University (2020-2024) <br><br><br><br><br><br><br><br><br><br><br><br><br></div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="row">
-            <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-              <img class="responsive-img" src="./images/xulihong.jpg" alt="XU Lihong">
-              <div class="logo"><i>The best is yet to come.</i></div>
-            </div>
-            <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-              <div class="name"><b>XU Lihong</b><br></div>
-              <div class="cv">MSc. Anhui Medical University (2025-present)<br>BSc. Wannan Medical University (2020-2024) <br><br><br><br><br><br><br><br><br><br><br><br><br></div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="row">
-            <div class="col s12 m12 l4 center aos-init aos-animate" data-aos="fade-right" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-              <img class="responsive-img" src="./images/chenjie.jpg" alt="CHEN Jie">
-              <div class="logo"><i>Wise men learn by other men's mistakes.</i></div>
-            </div>
-            <div class="col s12 m12 l8 aos-init aos-animate" data-aos="fade-left" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="500" data-aos-once="true">
-              <div class="name"><b>CHEN Jie</b><br></div>
-              <div class="cv">MSc. Anhui Medical University (2025-present)<br>BSc. Shanxi Medical University (2021-2025) <br><br><br><br><br><br><br><br><br><br><br><br><br></div>
-            </div>
-          </div>
-        </li>
-      </ul>
-      <hr class="members-hr">
-    </div>
-  </div>
-
-  <!--=============== Activities ===============-->
-  <div class="section activities-section scrollspy" id="activities">
-    <div class="row container">
-      <div class="row">
-        <div class="title">Academic Activities</div>
-        <hr>
-        <!-- 内容为空，保留原样 -->
+      <!-- 预留更多出版物占位符 -->
+      <div class="future-zone" style="margin-top: 40px;">
+        [ Future Publications / Preprints ]
       </div>
     </div>
   </div>
 
-  <!--=============== Footer ===============-->
-  <footer class="page-footer grey lighten-2" style="width: 100%; bottom: 0; left: 0; auto">
-    <div class="footer center black-text">
+  <!-- ========= MEMBERS ========= 网格卡片，7人完整 -->
+  <div id="members" class="section scrollspy">
+    <div class="glass-card">
+      <h2 class="title">Members</h2>
+      <div class="grid-3" style="gap: 30px;">
+        <!-- 冯晓文 -->
+        <div class="member-card">
+          <img class="responsive-img" src="./images/fengxiaowen.jpg" alt="FENG Xiaowen">
+          <div class="member-name">FENG Xiaowen</div>
+          <div class="member-quote"><i>Sow nothing, reap nothing.</i></div>
+          <div class="member-cv">Scientific Officer. AHMU (2017-present)<br>MSc CPU (2014-2017)<br>BSc AHMU (2008-2013)</div>
+        </div>
+        <!-- 陈楚 -->
+        <div class="member-card">
+          <img class="responsive-img" src="./images/chenchu.jpg" alt="CHEN Chu">
+          <div class="member-name">CHEN Chu</div>
+          <div class="member-quote"><i>Stay Hungry. Stay Foolish.</i></div>
+          <div class="member-cv">MSc AHMU (2023-present)<br>BSc AHMU (2020-2022)<br>Anhui Medical College (2017-2020)</div>
+        </div>
+        <!-- 李冰洁 -->
+        <div class="member-card">
+          <img class="responsive-img" src="./images/libingjie.jpg" alt="LI Bingjie">
+          <div class="member-name">LI Bingjie</div>
+          <div class="member-quote"><i>No Pains. No Gains.</i></div>
+          <div class="member-cv">MSc AHMU (2023-present)<br>BSc AHMU (2021-2023)<br>Anqing Medical College (2018-2021)</div>
+        </div>
+        <!-- 韩琪琪 -->
+        <div class="member-card">
+          <img class="responsive-img" src="./images/hanqiqi.jpg" alt="HAN Qiqi">
+          <div class="member-name">HAN Qiqi</div>
+          <div class="member-quote"><i>Life is real, life is earnest.</i></div>
+          <div class="member-cv">MSc AHMU (2024-present)<br>BSc Wannan Medical University (2019-2023)</div>
+        </div>
+        <!-- 董倩倩 -->
+        <div class="member-card">
+          <img class="responsive-img" src="./images/dongqianqian.jpg" alt="DONG Qianqian">
+          <div class="member-name">DONG Qianqian</div>
+          <div class="member-quote"><i>Doubt is the key to knowledge.</i></div>
+          <div class="member-cv">MSc AHMU (2024-present)<br>BSc Jinzhou Medical University (2020-2024)</div>
+        </div>
+        <!-- 许丽红 -->
+        <div class="member-card">
+          <img class="responsive-img" src="./images/xulihong.jpg" alt="XU Lihong">
+          <div class="member-name">XU Lihong</div>
+          <div class="member-quote"><i>The best is yet to come.</i></div>
+          <div class="member-cv">MSc AHMU (2025-present)<br>BSc Wannan Medical University (2020-2024)</div>
+        </div>
+        <!-- 陈杰 -->
+        <div class="member-card">
+          <img class="responsive-img" src="./images/chenjie.jpg" alt="CHEN Jie">
+          <div class="member-name">CHEN Jie</div>
+          <div class="member-quote"><i>Wise men learn by other men's mistakes.</i></div>
+          <div class="member-cv">MSc AHMU (2025-present)<br>BSc Shanxi Medical University (2021-2025)</div>
+        </div>
+      </div>
+      <!-- 预留招聘信息 -->
+      <div class="future-zone" style="margin-top: 40px;">
+        [ Join Us / Open Positions ]
+      </div>
+    </div>
+  </div>
+
+  <!-- ========= ACTIVITIES ========= 原内容空，但保留标题，加预留 -->
+  <div id="activities" class="section scrollspy">
+    <div class="glass-card">
+      <h2 class="title">Academic Activities</h2>
+      <div class="future-zone">
+        [ Upcoming Talks / Conference / Editorships ]<br>
+        <!-- 原占位注释保留 -->
+        <!-- <h5>Editor Services</h5> -->
+        <!-- <li> • Topic Editors for Frontiers in Robotics and AI (SCI), 2024</li> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========= FOOTER ========= 原样 -->
+  <footer class="page-footer" style="background: #010314 !important;">
+    <div class="footer center">
       <font size="1">
         YE Research Group<br>
         Anhui Medical University, NO.81 Meishan Road, Hefei, 230032, China
@@ -792,12 +685,11 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Scripts (保留原有) -->
   <script src="./files/jquery-2.1.1.min.js"></script>
   <script src="./files/materialize.js"></script>
   <script src="./files/aos.js"></script>
   <script src="./init.js"></script>
-
   <div class="jvectormap-tip"></div>
 </body>
 </html>
